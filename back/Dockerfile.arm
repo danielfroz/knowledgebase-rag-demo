@@ -1,0 +1,17 @@
+FROM arm64v8/node:23.9-alpine AS base
+RUN apk add --no-cache --update make g++ gcc libc6-compat
+
+FROM base AS runner
+WORKDIR /app
+# Copy package files
+COPY config.yml ./
+COPY back/package*.json ./
+COPY back/.npmrc ./
+# Install dependencies
+RUN npm ci
+# Copy source code
+COPY back/. .
+# Expose the port the app runs on
+EXPOSE 4000
+# Command to run the application
+ENTRYPOINT [ "npm", "start" ]

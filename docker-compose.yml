@@ -1,0 +1,22 @@
+services:
+  front:
+    build:
+      context: ./front
+      dockerfile: ./Dockerfile.arm
+    container_name: front
+    ports:
+      - 3000:3000
+    volumes:
+      - ./config.yml:/app/config.yml
+      - ./data:/data
+  
+  back:
+    build: 
+      context: .
+      dockerfile: ./back/Dockerfile.arm
+    container_name: back
+    ports:
+      - 4000:4000
+    volumes:
+      - ./config.yml:/app/config.yml
+      - ./data:/data

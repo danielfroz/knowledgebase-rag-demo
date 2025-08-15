@@ -1,0 +1,21 @@
+FROM arm64v8/node:23.9-alpine AS base
+RUN apk add --no-cache --update make g++ gcc libc6-compat
+
+FROM base AS builder
+WORKDIR /app
+COPY . .
+ENV NEXT_TELEMETRY_DISABLED=1
+RUN npm ci && npm run build
+
+FROM base AS runner
+WORKDIR /app
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=production
+ENV PORT=3000
+COPY --from=builder /app/.env.prd ./.env
+COPY --from=builder /app/next.config.mjs ./
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public/
+EXPOSE 3000
+ENTRYPOINT [ "node", "server.js" ]

@@ -1,0 +1,34 @@
+{
+  "name": "rag",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx tsx watch src/main.ts",
+    "start": "npx tsx src/main.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@danielfroz/slog": "npm:@jsr/danielfroz__slog@^0.2.3",
+    "@danielfroz/sloth": "npm:@jsr/danielfroz__sloth@^0.1.17",
+    "@langchain/core": "^0.3.42",
+    "@langchain/mongodb": "^0.1.0",
+    "@langchain/openai": "^0.4.4",
+    "@langchain/textsplitters": "^0.1.0",
+    "express": "^4.21.2",
+    "langchain": "^0.3.19",
+    "mongodb": "^6.14.2",
+    "pdf-parse": "^1.1.1",
+    "snappy": "^7.2.2",
+    "voyageai": "^0.0.4",
+    "yaml": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.10",
+    "@types/pdf-parse": "^1.1.5",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}

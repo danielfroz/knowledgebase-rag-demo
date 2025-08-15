@@ -1,0 +1,9 @@
+mongo:
+  uri: mongodb+srv://USERNAME:PASSWORD@ATLAS_CLUSTER_INSTANCE.mongodb.net/?retryWrites=true&w=majority&appName=ragdemo
+openai:
+  key: sk-proj-USEYOURKEY
+  models:
+    embedding: text-embedding-3-small
+    chat: gpt-4o-mini
+voyageai:
+  key: USE_YOUR_KEY
