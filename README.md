@@ -2,6 +2,8 @@
 
 This project was created to showcase RAG implemention using MongoDB Atlas and Voyage AI.
 
+This is meant to be a simple project - so can shows you how a RAG implementation look like without a complex code.
+
 # Components
 
 The project is organized into different components:
