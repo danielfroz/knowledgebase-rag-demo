@@ -49,6 +49,17 @@ curl -X POST -H "Content-Type: application/json" -d '{ "id": 1, "sid": 1 }'  htt
 
 Open your web browser and go to the following address: http://localhost:3000
 
+# Customizing Database Name
+
+In case that you want to change the database name, replacing the default `knowledgebase` with something of your choice, just edit the file: `back/src/inits/Repos.ts`. You shall see the line like the following:
+
+```ts
+const kbDb = client.db('knowledgebase')
+```
+
+Change it to whatever you want - make sure it is compatible with MongoDB database naming standards. 
+More at [Naming restrictions documentation](https://www.mongodb.com/docs/manual/reference/limits/#naming-restrictions).
+
 # Problems & Troubleshooting
 
 If you encounter errors or if the backend service takes a long time to start, you may have an invalid connection string or have not configured your Atlas cluster to accept connections from your computer. 
