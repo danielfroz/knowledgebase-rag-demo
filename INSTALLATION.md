@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-The solution is containerized and can be easily installed/configured using Docker or Podman. 
+The solution is containerized and can be easily installed/configured using Podman or Docker. 
 
 In case you want to use Docker, adapt the commands replacing podman binary with docker (just replace the name `podman` with `docker` on each command). Same applies to Windows users, adapt commands as necessary.
 
@@ -49,6 +49,14 @@ curl -X POST -H "Content-Type: application/json" -d '{ "id": 1, "sid": 1 }'  htt
 
 Open your web browser and go to the following address: http://localhost:3000
 
+# Problems & Troubleshooting
+
+If you encounter errors or if the backend service takes a long time to start, you may have an invalid connection string or have not configured your Atlas cluster to accept connections from your computer. 
+
+Ensure that your _Network Access_ settings in your Atlas project allow connections from your current IP address.
+
+**Note**: Be aware that VPNs can rotate IP addresses, potentially causing network delays or timeouts after several days of testing. Regularly check and update your Network Access settings.
+
 # Customizing Database Name
 
 In case that you want to change the database name, replacing the default `knowledgebase` with something else, just edit the file: `back/src/inits/Repos.ts`. You shall see the line as following:
@@ -59,11 +67,3 @@ const kbDb = client.db('knowledgebase')
 
 Change it to whatever you want but make sure it is compatible with MongoDB database naming standards. 
 More at [Naming Restrictions documentation](https://www.mongodb.com/docs/manual/reference/limits/#naming-restrictions).
-
-# Problems & Troubleshooting
-
-If you encounter errors or if the backend service takes a long time to start, you may have an invalid connection string or have not configured your Atlas cluster to accept connections from your computer. 
-
-Ensure that your _Network Access_ settings in your Atlas project allow connections from your current IP address.
-
-**Note**: Be aware that VPNs can rotate IP addresses, potentially causing network delays or timeouts after several days of testing. Regularly check and update your Network Access settings.

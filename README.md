@@ -8,8 +8,8 @@ This is meant to be a simple project - so can shows you how a RAG implementation
 
 The project is organized into different components:
 
-- **Back**: A back-end service responsible for the integration with MongoDB Atlas and Large Language Models (LLMs).
-- **Front**: A front-end service that manages the UI/X implementation
+- **Back**: A back-end service responsible for the AI implementation - meaning that it works with OpenAI, Voyage AI and MongoDB Atlas Database & Vector Search Database.
+- **Front**: A front-end service that manages the UI/X implementation.
 
 # Installation
 
