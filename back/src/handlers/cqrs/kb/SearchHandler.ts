@@ -91,7 +91,7 @@ export class SearchHandler implements QueryHandler<SearchQuery, SearchQueryResul
       const rrres = await client.rerank({
         query: question,
         documents: chunks.map(x => x.text),
-        model: 'rerank-2'
+        model: 'rerank-2.5'
       })
       if(rrres.data) {
         for(const result of rrres.data) {
