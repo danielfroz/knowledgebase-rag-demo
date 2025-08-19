@@ -2,6 +2,17 @@ import { glog } from '@/app/api/log'
 import * as fs from 'fs'
 import path from 'path'
 
+/**
+ * This API endpoint is responsible for saving the PDF files into the /data directory 
+ * and passing on the metadata information into the backend for embeddings processing (/kb/add endpoint).
+ * 
+ * This may not be the best pattern, as it does not scale.
+ * It works as podman/docker is handling the drive sharing between the applications (front & back).
+ * Instead you shall be saving the information to a S3.
+ * But for sake of simplicity we're doing without AWS S3 compatible or Azure Storage Account or Google Cloud blob storage bucket.
+ * 
+ * It only accepts PDF files as the backend only handles that format. Again... just serves well as keep the code clear and concise.
+ */
 export async function POST(req) {
   let log = glog.child({ mod: 'source.upload' })
 

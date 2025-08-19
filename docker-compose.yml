@@ -7,7 +7,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./config.yml:/app/config.yml
+      - ./config.local:/app/config.yml
       - ./data:/data
   
   back:
@@ -18,5 +18,5 @@ services:
     ports:
       - 4000:4000
     volumes:
-      - ./config.yml:/app/config.yml
+      - ./config.local:/app/config.yml
       - ./data:/data
