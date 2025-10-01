@@ -20,7 +20,7 @@ const Page = () => {
   }
 
   return (
-    <>
+    <div className='p-4'>
       <Search question={question} setQuestion={setQuestion} setAnswer={setAnswer}/>
 
       {answer &&
@@ -29,11 +29,11 @@ const Page = () => {
         </div>
       }
 
-      <div className='flex gap-2'>
+      <div className='flex gap-2 mt-2'>
         <Button onClick={() => reset()}>New Question</Button>
         <Button onClick={() => router.push('/source')}>Manage Sources</Button>
       </div>
-    </>
+    </div>
   )
 }
 
