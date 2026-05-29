@@ -1,9 +1,9 @@
-import { ConsoleLog } from "@danielfroz/slog"
+import { JsonLog } from "@danielfroz/slog"
 import { container } from "@danielfroz/sloth"
 import { Types } from "../types"
 
 export const init = async () => {
-  const log = new ConsoleLog({
+  const log = new JsonLog({
     level: 'INFO',
     init: { service: 'back' }
   })

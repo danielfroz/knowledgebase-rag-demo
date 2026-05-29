@@ -60,6 +60,8 @@ export class SearchHandler implements QueryHandler<SearchQuery, SearchQueryResul
       }
     }
 
+    log.info({ msg: 'question', question })
+
     stats.embedding.start = Date.now()
     const client = new VoyageAIClient({ apiKey: this.config.voyageai.key })
     const res = await client.embed({ 
@@ -85,7 +87,7 @@ export class SearchHandler implements QueryHandler<SearchQuery, SearchQueryResul
     stats.atlas.stop = Date.now()
     stats.atlas.elapsed = stats.atlas.stop - stats.atlas.start
 
-    if(chunks && rerank) {
+    if(chunks && chunks.length > 0 && rerank) {
       stats.rerank.start = Date.now()
       // reranking if due
       const rrres = await client.rerank({
@@ -125,9 +127,14 @@ export class SearchHandler implements QueryHandler<SearchQuery, SearchQueryResul
       ]
     })
 
+    if(!this.config.openai.key) {
+      log.error({ msg: 'invalid key', key: this.config.openai.key })
+      throw new Errors.CodeError('config.openai.key.invalid', 'configuration pending')
+    }
+
     stats.llm.start = Date.now()
     const llm = new ChatOpenAI({
-      openAIApiKey: this.config.openai.key,
+      apiKey: this.config.openai.key,
       model: this.config.openai.models.chat ?? 'gpt-4o-mini'
     })
     const llmres = await prompt.pipe(llm).invoke({

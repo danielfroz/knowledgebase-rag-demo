@@ -27,15 +27,14 @@ export class AddHandler implements CommandHandler<AddCommand, AddCommandResult> 
 
     // check if file exists
     if(!fs.existsSync(csource.path)) {
-      throw new Errors.CodeDescriptionError(
+      throw new Errors.CodeError(
         'path.invalid',
-        `failed to locate file`,
         `failed to locate file: ${csource.path}`
       )
     }
 
     // create the indexes if necessary
-    await this.rc.indexes()
+    // await this.rc.indexes()
 
     // check if this source is not already processed
     const existing = await this.rs.get({ id: csource.id })

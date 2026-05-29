@@ -38,3 +38,22 @@ podman compose up -d
 ```
 
 Use docker if you prefer.
+
+# Building the indexes
+
+Before searching, the MongoDB Atlas indexes must be created — including the
+`embeddings` vector search index used by Atlas Vector Search. Call the `/kb/index`
+endpoint once after the service is up (default port `4000`).
+
+The request body requires an `id` and a `sid` (any values will do):
+
+```shell
+curl http://localhost:4000/kb/index \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"id":"1","sid":"1"}'
+```
+
+This is idempotent — the vector search index is only created if it does not
+already exist. Note that on Atlas the search index builds asynchronously, so it
+may take a short while before queries return results.
